@@ -33,6 +33,7 @@ const HeaderStyle = styled.div`
   }
   background-color: #db7c26;
   position: sticky;
+  font-family: "Lobster";
 `;
 const NavBar = styled.div`
   display: flex;
