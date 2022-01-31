@@ -3,17 +3,43 @@
 //
 import React from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 function details() {
   return (
-    <div className="header_container">
+    <HeaderStyle>
       <h1>Family Secret Recipes</h1>
-      <div className="navbar">
-        <Link to="/signup">Sign Up</Link>
-        <Link to="/logout">Logout</Link>
-      </div>
-    </div>
+      <NavBar>
+        <Link className="link" to="/signup">
+          Sign Up
+        </Link>
+        <Link className="link" to="/logout">
+          Logout
+        </Link>
+      </NavBar>
+    </HeaderStyle>
   );
 }
 
 export default details;
+
+const HeaderStyle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  h1 {
+    margin-left: 20px;
+  }
+  background-color: #db7c26;
+`;
+const NavBar = styled.div`
+  display: flex;
+  width: 40%;
+  justify-content: space-evenly;
+  font-size: 1.5rem;
+  .link {
+    text-decoration: none;
+    color: black;
+  }
+`;

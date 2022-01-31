@@ -1,1 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Fira+Sans:wght@500&family=Irish+Grover&family=Lobster&family=Oxygen&family=Readex+Pro&family=Roboto&family=Roboto+Mono&family=Source+Sans+Pro&family=Zen+Old+Mincho&display=swap");
 
+body {
+  width: 100%;
+  font-family: "Lobster";
+  margin: 0;
+}

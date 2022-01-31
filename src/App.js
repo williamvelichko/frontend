@@ -1,6 +1,6 @@
 import "./App.css";
 import Detials from "./components/header/details";
-//import { Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 function App() {
   return (
@@ -8,7 +8,13 @@ function App() {
       <header className="App-header">
         <Detials />
       </header>
-      <div className="route_container"></div>
+      <div className="route_container">
+        <Switch>
+          <Route path="/logout"></Route>
+          <Route path="/login"></Route>
+          <Route path="/"> </Route>
+        </Switch>
+      </div>
     </div>
   );
 }
