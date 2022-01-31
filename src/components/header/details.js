@@ -32,10 +32,11 @@ const HeaderStyle = styled.div`
     margin-left: 20px;
   }
   background-color: #db7c26;
+  position: sticky;
 `;
 const NavBar = styled.div`
   display: flex;
-  width: 40%;
+  width: 30%;
   justify-content: space-evenly;
   font-size: 1.5rem;
   .link {
