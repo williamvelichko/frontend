@@ -24,13 +24,15 @@ const Login = () => {
              setErrors('ALL FIELDS REQUIRED!') 
         } else {
             // localStorage.setItem('token')
-            push('/home')
+            push('/recipelisting')
         }  
     }
 
 
 return (
+    <LoginWrapper>
         <Container>
+            <LoginForm>
                 <form onSubmit={login}> 
                     <FormBorder>
                     <h1>Log in</h1>
@@ -55,60 +57,68 @@ return (
                         <p>{errors}</p>
                     </FormBorder>
                 </form> 
+            </LoginForm>
         </Container>
+    </LoginWrapper>
 )
 }
 
 export default Login;
-
+const LoginWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+`
 
 const Container = styled.div`
-  margin-top: 80px;
+    margin-top: 80px;
 `;
 
 const FormBorder =styled.div`
+display: flex;
+flex-direction: column;
+button {
+    width: 40%;
+    background: transparent;
+    border-radius: 3px;
+    border: 2px solid palevioletred;
+    color: palevioletred;
+    margin: 5px 0em;
+    padding: 0.25em 1em;
+}
+button:hover {
+    background-color: #fff2b2;
+    border: 3px solid palevioletred;
+}
+input {
+    width: 75%;
+    margin: 5px 0px
+ }
+ .link {
     display: flex;
-    flex-direction: column;
-    width: 27%;
+    justify-content: center;
+    appearance: button;
+    text-decoration: none;
+    color: initial;
+    border-radius: 3px;
+    border: 2px solid palevioletred;
+    width: 38%;
+    color: palevioletred;
+    margin: 5px 0em;
+    padding: 2px 1px 2px 2px;
+}
+.link:hover {
+    background-color: #fff2b2;
+    border: 3px solid palevioletred;
+}
+
+`
+const LoginForm = styled.div`
+    width: 100%;
     margin: auto;
-    margin-top: 50px;
     border: 4px solid #780116;
     border-radius: 5px;
-    padding: 30px;
+    padding: 84px;
     background-color: #fffae5;
-    button {
-        width: 26%;
-        background: transparent;
-        border-radius: 3px;
-        border: 2px solid palevioletred;
-        color: palevioletred;
-        margin: 5px 0em;
-        padding: 0.25em 1em;
-    }
-    button:hover {
-        background-color: #fff2b2;
-        border: 3px solid palevioletred;
-    }
-    .link {
-        display: flex;
-        justify-content: center;
-        appearance: button;
-        text-decoration: none;
-        color: initial;
-        border-radius: 3px;
-        border: 2px solid palevioletred;
-        width: 25%;
-        color: palevioletred;
-        margin: 5px 0em;
-        padding: 2px 1px 2px 2px;
-    }
-   .link:hover {
-        background-color: #fff2b2;
-        border: 3px solid palevioletred;
-    }
-    input {
-        width: 75%;
-        margin: 5px
-     }
-
+    margin-top: 10px;
 `
