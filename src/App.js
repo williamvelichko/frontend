@@ -3,7 +3,7 @@ import Detials from "./components/header/details";
 import { Route, Switch } from "react-router-dom";
 import Login from "./components/forms/LogInForm";
 import Signup from "./components/forms/SignUpForm";
-
+import HomePage from "./components/HomePage/RecipeListings";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       <div className="route_container">
         <Switch>
           <Route path="/signup" component={Signup}/>
-          <Route path='/home'/>
+          <Route path="/recipelisting" component={HomePage} />
           <Route path="/logout"/>
           <Route path="/login" component={Login}/>
           <Route exact path="/" component={Login}/>

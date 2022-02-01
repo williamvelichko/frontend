@@ -12,14 +12,20 @@ const Login = () => {
         password: ''
     })
 
+    const [errors, setErrors] = useState('')
+
     const handleChange = e => {
         setCredentials({...credentials, [e.target.name]: e.target.value })
     }
 
     const login = e => {
         e.preventDefault();
-        // localStorage.setItem('token')
-        push('/home')
+        if(credentials.email === '' || credentials.password === ''){
+             setErrors('ALL FIELDS REQUIRED!') 
+        } else {
+            // localStorage.setItem('token')
+            push('/home')
+        }  
     }
 
 
@@ -45,7 +51,8 @@ return (
                         onChange={handleChange}
                     />
                     <button>Log in</button>
-                    <Link className="link" to ='/signup'>Sign up</Link>
+                    <Link className="link" to ='/signup'>Sign up</Link> 
+                        <p>{errors}</p>
                     </FormBorder>
                 </form> 
         </Container>
