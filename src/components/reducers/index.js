@@ -1,6 +1,9 @@
+import { EDITING } from "./../actions/index";
+
 const initialState = {
   recipe: [
     {
+      id: 52,
       title: "Baked Fruit Dessert",
       source: "Shannon Dobbs",
       ingrediants:
@@ -10,6 +13,7 @@ const initialState = {
       category: "dessert",
     },
     {
+      id: 75,
       title: "Homemade Croutons",
       source: "Shannon Dobbs",
       ingrediants:
@@ -19,10 +23,18 @@ const initialState = {
       category: "dinner",
     },
   ],
+  editing: false,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case EDITING:
+      return {
+        ...state,
+        editing: true,
+        //recipes: action.payload,
+      };
+
     default:
       return state;
   }

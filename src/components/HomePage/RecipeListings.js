@@ -1,9 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { setEditing } from "../actions";
+import EditRecipeForm from "../forms/EditRecipeForm";
 
 function RecipeListings(props) {
-  const { recipe } = props;
+  const { recipe, setEditing } = props;
+  console.log(recipe);
+
+  const handleEditSelect = (id) => {
+    recipe.editing = true;
+  };
 
   return (
     <RecipeList>
@@ -24,10 +31,11 @@ function RecipeListings(props) {
               <h4>
                 <strong>Category: {recipe.category}</strong>
               </h4>
-              <button>Edit</button>
+              <button onClick={handleEditSelect}>Edit</button>
             </RecipeItem>
           );
         })}
+        {recipe.editing && <EditRecipeForm />}
       </Container>
     </RecipeList>
   );
@@ -37,7 +45,7 @@ const mapStateToProps = (state) => {
     recipe: state.recipe,
   };
 };
-export default connect(mapStateToProps)(RecipeListings);
+export default connect(mapStateToProps, { setEditing })(RecipeListings);
 
 const RecipeList = styled.div`
   display: flex;
