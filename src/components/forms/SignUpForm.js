@@ -27,12 +27,11 @@ const Signup = () => {
         e.preventDefault();
         if(userInfo.first_name === '' || userInfo.last_name === '' || userInfo.email === '' || userInfo.password === '' || userInfo.repeat_password ===''){
             setError('ALL FIELDS ARE REQUIRED!')
-        } else if(userInfo.password !== userInfo.repeat_password){
+        } else if (userInfo.password !== userInfo.repeat_password){
             setError("Password doesn't match")
-        }else {
+        } else {
             push('/')
         }
-        
     }
 
     return(
