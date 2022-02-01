@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { setEditing } from "../actions";
@@ -6,9 +6,8 @@ import EditRecipeForm from "../forms/EditRecipeForm";
 import SingleRecipe from "./SingleRecipe";
 
 function RecipeListings(props) {
-  const { recipe, setEditing, editing } = props;
-  console.log(recipe);
-
+  const { recipe, editing, setEditing, recipeId } = props;
+  //console.log(recipeId);
   const handleEditSelect = (id) => {
     setEditing(id);
   };
@@ -16,6 +15,7 @@ function RecipeListings(props) {
   return (
     <RecipeList>
       <Container>
+        {editing && <EditRecipeForm />}
         {recipe.map((recipe) => {
           return (
             <RecipeItem key={recipe.title}>
@@ -27,7 +27,6 @@ function RecipeListings(props) {
           );
         })}
       </Container>
-      {editing && <EditRecipeForm />}
     </RecipeList>
   );
 }
@@ -35,6 +34,7 @@ const mapStateToProps = (state) => {
   return {
     recipe: state.recipe,
     editing: state.editing,
+    recipeId: state.recipeId,
   };
 };
 export default connect(mapStateToProps, { setEditing })(RecipeListings);

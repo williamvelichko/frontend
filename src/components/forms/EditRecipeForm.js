@@ -13,12 +13,20 @@ const initialRecipe = {
 
 function EditRecipeForm({ stateRecipe }) {
   const [recipe, setRecipe] = useState(initialRecipe);
-
+  console.log(recipe);
   useEffect(() => {
-    setRecipe(stateRecipe);
+    setRecipe(stateRecipe[0]);
   }, []);
 
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    setRecipe({
+      ...recipe,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <RecipeForm>
@@ -42,7 +50,7 @@ function EditRecipeForm({ stateRecipe }) {
           onChange={handleChange}
         />
         <div>
-          <button>Save Editing Recipe</button>
+          <button onClick={handleSubmit}>Save Editing Recipe</button>
           <button>Cancel</button>
         </div>
       </RecipeItem>
