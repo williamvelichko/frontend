@@ -32,7 +32,7 @@ const HeaderStyle = styled.div`
     margin-left: 20px;
   }
   background-color: #db7c26;
-  position: sticky;
+  position: fixed;
   font-family: "Lobster";
 `;
 const NavBar = styled.div`
