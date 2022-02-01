@@ -25,6 +25,14 @@ const initialState = {
   ],
   editing: false,
   recipeId: "",
+  initialRecipe: {
+    id: "",
+    title: "",
+    source: "",
+    ingrediants: "",
+    instructions: "",
+    category: "",
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -40,7 +48,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         editing: false,
       };
-
+    case EDITRECIPE:
+      const editedRecipe = {
+        ...action.payload,
+        id: Date.now(),
+      };
+      return {
+        ...state,
+        editing: false,
+        recipe: [...state.recipe, editedRecipe],
+      };
     default:
       return state;
   }

@@ -2,18 +2,14 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { cancelEdit } from "../actions";
+import { cancelEdit, saveEditRecipe } from "../actions";
 
-const initialRecipe = {
-  id: "",
-  title: "",
-  source: "",
-  ingrediants: "",
-  instructions: "",
-  category: "",
-};
-
-function EditRecipeForm({ stateRecipe, cancelEdit }) {
+function EditRecipeForm({
+  stateRecipe,
+  cancelEdit,
+  saveEditRecipe,
+  initialRecipe,
+}) {
   const [recipe, setRecipe] = useState(initialRecipe);
   const { push } = useHistory();
 
@@ -29,7 +25,7 @@ function EditRecipeForm({ stateRecipe, cancelEdit }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    cancelEdit();
+    saveEditRecipe(recipe);
     push("/recipelisting");
   };
   const handleCancel = (e) => {
@@ -70,9 +66,12 @@ function EditRecipeForm({ stateRecipe, cancelEdit }) {
 const mapState = (state) => {
   return {
     stateRecipe: state.recipe,
+    initialRecipe: state.initialRecipe,
   };
 };
-export default connect(mapState, { cancelEdit })(EditRecipeForm);
+export default connect(mapState, { cancelEdit, saveEditRecipe })(
+  EditRecipeForm
+);
 
 const RecipeForm = styled.form`
   display: flex;

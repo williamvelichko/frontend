@@ -21,7 +21,7 @@ function RecipeListings(props) {
         {editing && <EditRecipeForm />}
         {recipe.map((recipe) => {
           return (
-            <RecipeItem key={recipe.title}>
+            <RecipeItem key={recipe.id}>
               <SingleRecipe
                 recipe={recipe}
                 handleEditSelect={handleEditSelect}
