@@ -1,6 +1,9 @@
+import { EDITING, EDITRECIPE, CANCELEDIT } from "./../actions/index";
+
 const initialState = {
   recipe: [
     {
+      id: 52,
       title: "Baked Fruit Dessert",
       source: "Shannon Dobbs",
       ingredients:
@@ -10,6 +13,7 @@ const initialState = {
       category: "dessert",
     },
     {
+      id: 75,
       title: "Homemade Croutons",
       source: "Shannon Dobbs",
       ingredients:
@@ -19,10 +23,41 @@ const initialState = {
       category: "dinner",
     },
   ],
+  editing: false,
+  recipeId: "",
+  initialRecipe: {
+    id: "",
+    title: "",
+    source: "",
+    ingrediants: "",
+    instructions: "",
+    category: "",
+  },
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case EDITING:
+      return {
+        ...state,
+        editing: true,
+        recipeId: action.payload,
+      };
+    case CANCELEDIT:
+      return {
+        ...state,
+        editing: false,
+      };
+    case EDITRECIPE:
+      const editedRecipe = {
+        ...action.payload,
+        id: Date.now(),
+      };
+      return {
+        ...state,
+        editing: false,
+        recipe: [...state.recipe, editedRecipe],
+      };
     default:
       return state;
   }

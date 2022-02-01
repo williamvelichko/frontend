@@ -1,30 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { setEditing } from "../actions";
+import EditRecipeForm from "../forms/EditRecipeForm";
+import SingleRecipe from "./SingleRecipe";
+import { useHistory } from "react-router-dom";
 
 function RecipeListings(props) {
-  const { recipe } = props;
+  const { recipe, editing, setEditing, recipeId } = props;
+  const { push } = useHistory();
+  //console.log(recipeId);
+  const handleEditSelect = (id) => {
+    setEditing(id);
+    push("/edit");
+  };
 
   return (
     <RecipeList>
       <Container>
+        {editing && <EditRecipeForm />}
         {recipe.map((recipe) => {
           return (
-            <RecipeItem key={recipe.title}>
-              <h2>{recipe.title}</h2>
-              <p>
-                <strong>Source:</strong> {recipe.source}
-              </p>
-              <h4>
-                <strong>Ingrediants: {recipe.ingrediants}</strong>
-              </h4>
-              <h4>
-                <strong>Instructions: {recipe.instructions}</strong>
-              </h4>
-              <h4>
-                <strong>Category: {recipe.category}</strong>
-              </h4>
-              <button>Edit</button>
+            <RecipeItem key={recipe.id}>
+              <SingleRecipe
+                recipe={recipe}
+                handleEditSelect={handleEditSelect}
+              />
             </RecipeItem>
           );
         })}
@@ -35,9 +36,11 @@ function RecipeListings(props) {
 const mapStateToProps = (state) => {
   return {
     recipe: state.recipe,
+    editing: state.editing,
+    recipeId: state.recipeId,
   };
 };
-export default connect(mapStateToProps)(RecipeListings);
+export default connect(mapStateToProps, { setEditing })(RecipeListings);
 
 const RecipeList = styled.div`
   display: flex;

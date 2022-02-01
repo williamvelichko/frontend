@@ -4,7 +4,10 @@ import { Route, Switch } from "react-router-dom";
 import Login from "./components/forms/LogInForm";
 import Signup from "./components/forms/SignUpForm";
 import HomePage from "./components/HomePage/RecipeListings";
+
+import EditRecipeForm from "./components/forms/EditRecipeForm";
 import AddRecipe from "./components/forms/AddRecipeForm";
+
 
 function App() {
   return (
@@ -14,12 +17,21 @@ function App() {
       </header>
       <div className="route_container">
         <Switch>
+
+          <Route path="/edit" component={EditRecipeForm} />
+          <Route path="/recipelisting" component={HomePage} />
+
+          <Route path="/logout"></Route>
+          <Route path="/login"></Route>
+          <Route path="/"> </Route>
+
           <Route path="/addrecipe" component={AddRecipe}/>
           <Route path="/signup" component={Signup}/>
           <Route path="/recipelisting" component={HomePage} />
           <Route path="/logout"/>
           <Route path="/login" component={Login}/>
           <Route exact path="/" component={Login}/>
+
         </Switch>
       </div>
     </div>
