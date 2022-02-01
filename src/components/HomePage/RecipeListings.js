@@ -42,18 +42,20 @@ export default connect(mapStateToProps)(RecipeListings);
 const RecipeList = styled.div`
   display: flex;
   flex-direction: column;
+
   width: 100%;
 `;
 const RecipeItem = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 60%;
   margin: auto;
   margin-top: 50px;
   border: 4px solid #780116;
   border-radius: 5px;
   padding: 30px;
   background-color: #fffae5;
+  margin-bottom: 20px;
   button {
     width: 20%;
     background: transparent;
@@ -67,6 +69,11 @@ const RecipeItem = styled.div`
     background-color: #fff2b2;
     border: 3px solid palevioletred;
   }
+  :hover {
+    box-shadow: 10px 5px 5px #db7c26;
+  }
+  font-family: oxygen;
+  font-size: 1.5rem;
 `;
 
 const Container = styled.div`

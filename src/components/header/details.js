@@ -16,6 +16,15 @@ function details() {
         <Link className="link" to="/logout">
           Logout
         </Link>
+        <Link className="link" to="/addrecipe">
+          Add Your Own Recipe
+        </Link>
+        <input
+          type="text"
+          id="search-bar"
+          placeholder="Search Recipe by title or categories"
+          name="search"
+        />
       </NavBar>
     </HeaderStyle>
   );
@@ -34,10 +43,11 @@ const HeaderStyle = styled.div`
   background-color: #db7c26;
   position: fixed;
   font-family: "Lobster";
+  box-shadow: 10px 5px 10px grey;
 `;
 const NavBar = styled.div`
   display: flex;
-  width: 30%;
+  width: 50%;
   justify-content: space-evenly;
   font-size: 1.5rem;
   .link {
