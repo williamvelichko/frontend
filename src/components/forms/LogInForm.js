@@ -90,12 +90,25 @@ const FormBorder =styled.div`
         border: 3px solid palevioletred;
     }
     .link {
+        display: flex;
+        justify-content: center;
+        appearance: button;
+        text-decoration: none;
+        color: initial;
         border-radius: 3px;
         border: 2px solid palevioletred;
         width: 25%;
         color: palevioletred;
         margin: 5px 0em;
-        padding-left: 1px;
+        padding: 2px 1px 2px 2px;
     }
+   .link:hover {
+        background-color: #fff2b2;
+        border: 3px solid palevioletred;
+    }
+    input {
+        width: 75%;
+        margin: 5px
+     }
 
 `

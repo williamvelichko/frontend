@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 const Signup = () => {
+    const { push } = useHistory();
 
     const [userInfo, setUserInfo] = useState({
         first_name: '',
@@ -14,7 +15,9 @@ const Signup = () => {
         repeat_password:'',
     })
 
-    const { push } = useHistory();
+    const [error, setError] = useState('');
+
+    
 
     const handleChange = e =>{
         setUserInfo({...userInfo, [e.target.name]: e.target.value })
@@ -22,7 +25,14 @@ const Signup = () => {
 
     const submit = e => {
         e.preventDefault();
-        push('/')
+        if(userInfo.first_name === '' || userInfo.last_name === '' || userInfo.email === '' || userInfo.password === '' || userInfo.repeat_password ===''){
+            setError('ALL FIELDS ARE REQUIRED!')
+        } else if(userInfo.password !== userInfo.repeat_password){
+            setError("Password doesn't match")
+        }else {
+            push('/')
+        }
+        
     }
 
     return(
@@ -63,10 +73,11 @@ const Signup = () => {
                     <input
                         type='password'
                         name='repeat_password'
-                        value={userInfo.password}
+                        value={userInfo.repeat_password}
                         onChange={handleChange}
                     />
                     <button>Sign Up!</button>
+                    <p>{error}</p>
                 </SignUpForm>
                 </form>
             </SignUpWrapper>
@@ -79,6 +90,7 @@ const SignUpWrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
+
 `
 const SignUpForm = styled.div`
     display: flex;
@@ -88,7 +100,7 @@ const SignUpForm = styled.div`
     margin-top: 50px;
     border: 4px solid #780116;
     border-radius: 5px;
-    padding: 30px;
+    padding: 84px;
     background-color: #fffae5;
     margin-bottom: 20px;
     button {
@@ -106,6 +118,7 @@ const SignUpForm = styled.div`
     }
     input {
        width: 75%;
+       margin: 5px
     }
     
 `

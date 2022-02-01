@@ -41,7 +41,7 @@ const HeaderStyle = styled.div`
     margin-left: 20px;
   }
   background-color: #db7c26;
-  position: fixed;
+  // position: fixed;
   font-family: "Lobster";
   box-shadow: 10px 5px 10px grey;
 `;
