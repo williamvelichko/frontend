@@ -5,11 +5,11 @@ import { setEditing } from "../actions";
 import EditRecipeForm from "../forms/EditRecipeForm";
 
 function RecipeListings(props) {
-  const { recipe, setEditing } = props;
+  const { recipe, setEditing, editing } = props;
   console.log(recipe);
 
-  const handleEditSelect = (id) => {
-    recipe.editing = true;
+  const handleEditSelect = () => {
+    setEditing();
   };
 
   return (
@@ -35,14 +35,16 @@ function RecipeListings(props) {
             </RecipeItem>
           );
         })}
-        {recipe.editing && <EditRecipeForm />}
       </Container>
+
+      {editing && <EditRecipeForm />}
     </RecipeList>
   );
 }
 const mapStateToProps = (state) => {
   return {
     recipe: state.recipe,
+    editing: state.editing,
   };
 };
 export default connect(mapStateToProps, { setEditing })(RecipeListings);
