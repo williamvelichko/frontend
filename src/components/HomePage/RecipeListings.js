@@ -3,13 +3,14 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import { setEditing } from "../actions";
 import EditRecipeForm from "../forms/EditRecipeForm";
+import SingleRecipe from "./SingleRecipe";
 
 function RecipeListings(props) {
   const { recipe, setEditing, editing } = props;
   console.log(recipe);
 
-  const handleEditSelect = () => {
-    setEditing();
+  const handleEditSelect = (id) => {
+    setEditing(id);
   };
 
   return (
@@ -18,25 +19,14 @@ function RecipeListings(props) {
         {recipe.map((recipe) => {
           return (
             <RecipeItem key={recipe.title}>
-              <h2>{recipe.title}</h2>
-              <p>
-                <strong>Source:</strong> {recipe.source}
-              </p>
-              <h4>
-                <strong>Ingrediants: {recipe.ingrediants}</strong>
-              </h4>
-              <h4>
-                <strong>Instructions: {recipe.instructions}</strong>
-              </h4>
-              <h4>
-                <strong>Category: {recipe.category}</strong>
-              </h4>
-              <button onClick={handleEditSelect}>Edit</button>
+              <SingleRecipe
+                recipe={recipe}
+                handleEditSelect={handleEditSelect}
+              />
             </RecipeItem>
           );
         })}
       </Container>
-
       {editing && <EditRecipeForm />}
     </RecipeList>
   );

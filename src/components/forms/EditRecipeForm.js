@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
 const initialRecipe = {
   id: "",
-  title: "will",
-  source: "will",
-  ingrediants: "asa",
-  instructions: "assa",
-  category: "dinner",
+  title: "",
+  source: "",
+  ingrediants: "",
+  instructions: "",
+  category: "",
 };
 
-function EditRecipeForm() {
+function EditRecipeForm({ stateRecipe }) {
   const [recipe, setRecipe] = useState(initialRecipe);
+
+  useEffect(() => {
+    setRecipe(stateRecipe);
+  }, []);
 
   const handleChange = () => {};
 
@@ -47,7 +51,7 @@ function EditRecipeForm() {
 }
 const mapState = (state) => {
   return {
-    recipe: state.recipe,
+    stateRecipe: state.recipe,
   };
 };
 export default connect(mapState)(EditRecipeForm);

@@ -24,6 +24,7 @@ const initialState = {
     },
   ],
   editing: false,
+  recipeId: "",
 };
 
 const reducer = (state = initialState, action) => {
@@ -32,7 +33,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         editing: true,
-        //recipes: action.payload,
+        recipeId: action.payload,
       };
 
     default:

@@ -1,5 +1,5 @@
 export const EDITING = "EDITING";
 
 export const setEditing = (id) => {
-  return { type: EDITING };
+  return { type: EDITING, payload: id };
 };
