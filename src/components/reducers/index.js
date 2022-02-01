@@ -1,4 +1,4 @@
-import { EDITING } from "./../actions/index";
+import { EDITING, EDITRECIPE, CANCELEDIT } from "./../actions/index";
 
 const initialState = {
   recipe: [
@@ -34,6 +34,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         editing: true,
         recipeId: action.payload,
+      };
+    case CANCELEDIT:
+      return {
+        ...state,
+        editing: false,
       };
 
     default:
