@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 function RecipeListings(props) {
   const { recipe, editing, setEditing, recipeId } = props;
   const { push } = useHistory();
-  //console.log(recipeId);
+
   const handleEditSelect = (id) => {
     setEditing(id);
     push("/edit");
