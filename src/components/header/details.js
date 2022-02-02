@@ -4,6 +4,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import SearchIcon from "@mui/icons-material/Search";
 
 function details() {
   return (
@@ -19,12 +20,17 @@ function details() {
         <Link className="link" to="/addrecipe">
           Add Your Own Recipe
         </Link>
-        <input
-          type="text"
-          id="search-bar"
-          placeholder="Search Recipe by title or categories"
-          name="search"
-        />
+        <SearchBar>
+          <input
+            type="text"
+            id="search-bar"
+            placeholder="Search Recipe by title or categories"
+            name="search"
+          />
+          <button>
+            <SearchIcon />
+          </button>
+        </SearchBar>
       </NavBar>
     </HeaderStyle>
   );
@@ -53,5 +59,23 @@ const NavBar = styled.div`
   .link {
     text-decoration: none;
     color: black;
+  }
+`;
+const SearchBar = styled.div`
+  display: flex;
+  border: 2px solid black;
+  background-color: #fffae5;
+  padding: 5px;
+  border-radius: 5px;
+  input {
+    background-color: #fffae5;
+    border: none;
+  }
+  button {
+    background-color: #fffae5;
+    border: none;
+  }
+  button:hover {
+    border: 1px solid black;
   }
 `;
