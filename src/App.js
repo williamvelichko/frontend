@@ -7,6 +7,7 @@ import HomePage from "./components/HomePage/RecipeListings";
 
 import EditRecipeForm from "./components/forms/EditRecipeForm";
 import AddRecipe from "./components/forms/AddRecipeForm";
+import PrivateRoute from "./components/utils/PrivateRoute";
 
 function App() {
   return (
@@ -16,14 +17,16 @@ function App() {
       </header>
       <div className="route_container">
         <Switch>
-          <Route path="/edit" component={EditRecipeForm} />
+          <PrivateRoute path="/edit" component={EditRecipeForm} />
 
-          <Route path="/addrecipe" component={AddRecipe} />
+          <PrivateRoute path="/addrecipe" component={AddRecipe} />
+
+          <PrivateRoute path="/recipelisting" component={HomePage} />
+
+          <PrivateRoute exact path="/logout" />
           <Route path="/signup" component={Signup} />
-          <Route path="/recipelisting" component={HomePage} />
-          <Route path="/logout" />
           <Route path="/login" component={Login} />
-          <Route exact path="/" component={Login} />
+          <Route exact path="/" component={Signup} />
         </Switch>
       </div>
     </div>
