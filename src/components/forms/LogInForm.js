@@ -4,80 +4,81 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const { push } = useHistory();
 
-    const { push } = useHistory();
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
 
-    const [credentials, setCredentials] = useState({
-        email: '',
-        password: ''
-    })
+  const [errors, setErrors] = useState("");
 
-    const [errors, setErrors] = useState('')
+  const handleChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
 
-    const handleChange = e => {
-        setCredentials({...credentials, [e.target.name]: e.target.value })
+  const login = (e) => {
+    e.preventDefault();
+    if (credentials.email === "" || credentials.password === "") {
+      setErrors("ALL FIELDS REQUIRED!");
+    } else {
+      // localStorage.setItem('token')
+      push("/recipelisting");
     }
+  };
 
-    const login = e => {
-        e.preventDefault();
-        if(credentials.email === '' || credentials.password === ''){
-             setErrors('ALL FIELDS REQUIRED!') 
-        } else {
-            // localStorage.setItem('token')
-            push('/recipelisting')
-        }  
-    }
-
-
-return (
+  return (
     <LoginWrapper>
-        <Container>
-            <LoginForm>
-                <form onSubmit={login}> 
-                    <FormBorder>
-                    <h1>Log in</h1>
-                    <label>Email : </label>
-                    <input
-                        type='text'
-                        name='email'
-                        placeholder="Enter your email"
-                        value={credentials.email}
-                        onChange={handleChange}
-                    />
-                    <label>Password : </label>
-                    <input
-                        type='password'
-                        name='password'
-                        placeholder="Enter your password"
-                        value={credentials.password}
-                        onChange={handleChange}
-                    />
-                    <button>Log in</button>
-                    <Link className="link" to ='/signup'>Sign up</Link> 
-                        <p>{errors}</p>
-                    </FormBorder>
-                </form> 
-            </LoginForm>
-        </Container>
+      <Container>
+        <LoginForm>
+          <form onSubmit={login}>
+            <FormBorder>
+              <h1>Log in</h1>
+              <label>Email : </label>
+              <input
+                type="text"
+                name="email"
+                placeholder="Enter your email"
+                value={credentials.email}
+                onChange={handleChange}
+              />
+              <label>Password : </label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                value={credentials.password}
+                onChange={handleChange}
+              />
+              <button>Log in</button>
+              <Link className="link" to="/signup">
+                Sign up
+              </Link>
+              <p>{errors}</p>
+            </FormBorder>
+          </form>
+        </LoginForm>
+      </Container>
     </LoginWrapper>
-)
-}
+  );
+};
 
 export default Login;
 const LoginWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-`
-
-const Container = styled.div`
-    margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  //justify-content: center;
+  width: 100%;
 `;
 
-const FormBorder =styled.div`
-display: flex;
-flex-direction: column;
-button {
+const Container = styled.div`
+  margin-top: 100px;
+`;
+
+const FormBorder = styled.div`
+  display: flex;
+  flex-direction: column;
+  button {
     width: 40%;
     background: transparent;
     border-radius: 3px;
@@ -85,16 +86,16 @@ button {
     color: palevioletred;
     margin: 5px 0em;
     padding: 0.25em 1em;
-}
-button:hover {
+  }
+  button:hover {
     background-color: #fff2b2;
     border: 3px solid palevioletred;
-}
-input {
+  }
+  input {
     width: 75%;
-    margin: 5px 0px
- }
- .link {
+    margin: 5px 0px;
+  }
+  .link {
     display: flex;
     justify-content: center;
     appearance: button;
@@ -106,19 +107,19 @@ input {
     color: palevioletred;
     margin: 5px 0em;
     padding: 2px 1px 2px 2px;
-}
-.link:hover {
+  }
+  .link:hover {
     background-color: #fff2b2;
     border: 3px solid palevioletred;
-}
-
-`
+  }
+`;
 const LoginForm = styled.div`
-    width: 100%;
-    margin: auto;
-    border: 4px solid #780116;
-    border-radius: 5px;
-    padding: 84px;
-    background-color: #fffae5;
-    margin-top: 10px;
-`
+  width: 30%;
+  margin: auto;
+  border: 4px solid #780116;
+  border-radius: 5px;
+  padding: 84px;
+  background-color: #fffae5;
+  margin-top: 10px;
+  font-family: oxygen;
+`;

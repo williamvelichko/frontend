@@ -4,3 +4,6 @@ body {
   background-color: #fff2b2;
   margin: 0;
 }
+* {
+  border: 1px solid red;
+}
