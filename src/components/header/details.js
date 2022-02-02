@@ -15,6 +15,7 @@ function details() {
         <Link className="link" to="/signup">
           Sign Up
         </Link>
+
         {isloggedIn && (
           <Link className="link" to="/logout">
             Logout

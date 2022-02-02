@@ -84,7 +84,7 @@ const RecipeItem = styled.div`
   flex-direction: column;
   width: 60%;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 120px;
   border: 4px solid #780116;
   border-radius: 5px;
   padding: 30px;

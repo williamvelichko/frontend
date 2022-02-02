@@ -1,6 +1,6 @@
 import "./App.css";
 import Detials from "./components/header/details";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useParams } from "react-router-dom";
 import Login from "./components/forms/LogInForm";
 import Signup from "./components/forms/SignUpForm";
 import HomePage from "./components/HomePage/RecipeListings";
@@ -11,6 +11,8 @@ import PrivateRoute from "./components/utils/PrivateRoute";
 import Logout from "./components/forms/Logout";
 
 function App() {
+  const { id } = useParams();
+  console.log(id);
   return (
     <div className="App">
       <header className="App-header">
@@ -18,7 +20,11 @@ function App() {
       </header>
       <div className="route_container">
         <Switch>
-          <PrivateRoute path="/edit" component={EditRecipeForm} />
+          <PrivateRoute
+            exact
+            path="/recipelisting/edit/id"
+            component={EditRecipeForm}
+          />
 
           <PrivateRoute path="/addrecipe" component={AddRecipe} />
 

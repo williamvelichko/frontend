@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function SingleRecipe(props) {
   const { recipe, handleEditSelect } = props;
@@ -10,7 +11,7 @@ function SingleRecipe(props) {
         <strong>Source:</strong> {recipe.source}
       </p>
       <h4>
-        <strong>Ingrediants: {recipe.ingrediants}</strong>
+        <strong>Ingrediants: {recipe.ingredients}</strong>
       </h4>
       <h4>
         <strong>Instructions: {recipe.instructions}</strong>
@@ -18,7 +19,10 @@ function SingleRecipe(props) {
       <h4>
         <strong>Category: {recipe.category}</strong>
       </h4>
-      <button onClick={() => handleEditSelect(recipe.id)}>Edit</button>
+
+      <Link to={`/recipelisting/${recipe.id}`}>
+        <button onClick={() => handleEditSelect(recipe.id)}>Edit</button>
+      </Link>
     </div>
   );
 }
