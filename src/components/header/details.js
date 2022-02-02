@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import SearchIcon from "@mui/icons-material/Search";
 
-function details() {
+function Details() {
   return (
     <HeaderStyle>
       <h1>Family Secret Recipes</h1>
@@ -36,7 +36,7 @@ function details() {
   );
 }
 
-export default details;
+export default Details;
 
 const HeaderStyle = styled.div`
   display: flex;
