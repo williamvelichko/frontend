@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 const Signup = () => {
   const { push } = useHistory();
 
   const [userInfo, setUserInfo] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
+    // first_name: "",
+    // last_name: "",
+    //  email: "",
+    username: "",
     password: "",
-    repeat_password: "",
+    // repeat_password: "",
   });
 
   const [error, setError] = useState("");
@@ -23,17 +24,33 @@ const Signup = () => {
   const submit = (e) => {
     e.preventDefault();
     if (
-      userInfo.first_name === "" ||
-      userInfo.last_name === "" ||
-      userInfo.email === "" ||
+      // userInfo.first_name === "" ||
+      // userInfo.last_name === "" ||
+      // userInfo.email === "" ||
       userInfo.password === "" ||
-      userInfo.repeat_password === ""
+      userInfo.username === ""
+      // userInfo.repeat_password === ""
     ) {
       setError("ALL FIELDS ARE REQUIRED!");
-    } else if (userInfo.password !== userInfo.repeat_password) {
-      setError("Password doesn't match");
+      // } else if (userInfo.password !== userInfo.repeat_password) {
+      //   setError("Password doesn't match");
     } else {
-      push("/");
+      axios
+        .post(
+          "https://back-end-recipe.herokuapp.com/api/auth/register",
+          userInfo
+        )
+        .then((resp) => {
+          //console.log(resp);
+          setUserInfo(resp.data);
+
+          //localStorage.setItem("token", resp.data.token);
+          push("/recipelisting");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      //push("/");
     }
   };
 
@@ -44,7 +61,7 @@ const Signup = () => {
           <form onSubmit={submit}>
             <Fields>
               <h1>Sign Up</h1>
-              <label>First Name : </label>
+              {/* <label>First Name : </label>
               <input
                 type="text"
                 name="first_name"
@@ -64,6 +81,13 @@ const Signup = () => {
                 name="email"
                 value={userInfo.email}
                 onChange={handleChange}
+              /> */}
+              <label>username : </label>
+              <input
+                type="text"
+                name="username"
+                value={userInfo.username}
+                onChange={handleChange}
               />
               <label>Password : </label>
               <input
@@ -72,18 +96,18 @@ const Signup = () => {
                 value={userInfo.password}
                 onChange={handleChange}
               />
-              <label>Re-enter Password : </label>
+              {/* <label>Re-enter Password : </label>
               <input
                 type="password"
                 name="repeat_password"
                 value={userInfo.repeat_password}
                 onChange={handleChange}
-              />
+              /> */}
               <h3> Already have an account</h3>
               <Link className="link" to="/login">
                 Login
               </Link>
-              <button>Sign Up!</button>
+              <button id="submit">Sign Up!</button>
               <p>{error}</p>
             </Fields>
           </form>
