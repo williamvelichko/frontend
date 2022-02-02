@@ -10,6 +10,9 @@ function details() {
     <HeaderStyle>
       <h1>Family Secret Recipes</h1>
       <NavBar>
+      <Link className="link" to="/">
+          Home
+        </Link>
         <Link className="link" to="/signup">
           Sign Up
         </Link>
