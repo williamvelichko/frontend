@@ -1,14 +1,24 @@
 // hello first name
 //links to add recipe
 //
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import SearchIcon from "@mui/icons-material/Search";
+import { connect } from "react-redux";
+import RecipeListings from "../HomePage/RecipeListings";
+import Search from "../Search/Search";
 
-function Details() {
+function Details(props) {
+  const { recipe } = props;
+  const [filter, setFilter] = useState("");
+  const searchText = (event) => {
+    setFilter(event.target.value);
+  };
+
   return (
     <HeaderStyle>
+      <Search filter={filter} />
       <h1>Family Secret Recipes</h1>
       <NavBar>
         <Link className="link" to="/signup">
@@ -26,6 +36,8 @@ function Details() {
             id="search-bar"
             placeholder="Search Recipe by title or categories"
             name="search"
+            value={filter}
+            onChange={searchText.bind(this)}
           />
           <button>
             <SearchIcon />
@@ -35,8 +47,13 @@ function Details() {
     </HeaderStyle>
   );
 }
+const mapState = (state) => {
+  return {
+    recipe: state.recipe,
+  };
+};
 
-export default Details;
+export default connect(mapState)(Details);
 
 const HeaderStyle = styled.div`
   display: flex;
