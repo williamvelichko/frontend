@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import SearchIcon from "@mui/icons-material/Search";
 
-function Details() {
+function details() {
+  const isloggedIn = localStorage.getItem("token");
   return (
     <HeaderStyle>
       <h1>Family Secret Recipes</h1>
@@ -14,29 +15,35 @@ function Details() {
         <Link className="link" to="/signup">
           Sign Up
         </Link>
-        <Link className="link" to="/logout">
-          Logout
-        </Link>
-        <Link className="link" to="/addrecipe">
-          Add Your Own Recipe
-        </Link>
-        <SearchBar>
-          <input
-            type="text"
-            id="search-bar"
-            placeholder="Search Recipe by title or categories"
-            name="search"
-          />
-          <button>
-            <SearchIcon />
-          </button>
-        </SearchBar>
+        {isloggedIn && (
+          <Link className="link" to="/logout">
+            Logout
+          </Link>
+        )}
+        {isloggedIn && (
+          <Link className="link" to="/addrecipe">
+            Add Your Own Recipe
+          </Link>
+        )}
+        {isloggedIn && (
+          <SearchBar>
+            <input
+              type="text"
+              id="search-bar"
+              placeholder="Search Recipe by title or categories"
+              name="search"
+            />
+            <button>
+              <SearchIcon />
+            </button>
+          </SearchBar>
+        )}
       </NavBar>
     </HeaderStyle>
   );
 }
 
-export default Details;
+export default details;
 
 const HeaderStyle = styled.div`
   display: flex;
