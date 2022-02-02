@@ -25,7 +25,7 @@ function EditRecipeForm({
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    saveEditRecipe(recipe);
+    saveEditRecipe();
     push("/recipelisting");
   };
   const handleCancel = (e) => {

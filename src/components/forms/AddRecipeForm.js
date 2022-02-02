@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
-
-const AddRecipe = () => {
+import EditRecipeForm from "./EditRecipeForm";
+import { connect } from "react-redux";
+const AddRecipe = (props) => {
   const { push } = useHistory();
   const [recipe, setRecipe] = useState({
     title: "",
@@ -86,7 +87,7 @@ const AddRecipe = () => {
   );
 };
 
-export default AddRecipe;
+export default connect(null, { EditRecipeForm })(AddRecipe);
 
 const Container = styled.div`
   margin-top: 120px;
