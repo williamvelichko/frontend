@@ -43,12 +43,23 @@ const Signup = () => {
         .then((resp) => {
           //console.log(resp);
           setUserInfo(resp.data);
+          axios
+            .post(
+              "https://back-end-recipe.herokuapp.com/api/auth/login",
+              userInfo
+            )
+            .then((resp) => {
+              localStorage.setItem("token", resp.data.token);
+              push("/recipelisting");
+            })
+            .catch((err) => console.log(err));
 
           //localStorage.setItem("token", resp.data.token);
           push("/recipelisting");
         })
         .catch((err) => {
           console.log(err);
+          setError("Account Already Exists");
         });
       //push("/");
     }

@@ -8,6 +8,7 @@ import HomePage from "./components/HomePage/RecipeListings";
 import EditRecipeForm from "./components/forms/EditRecipeForm";
 import AddRecipe from "./components/forms/AddRecipeForm";
 import PrivateRoute from "./components/utils/PrivateRoute";
+import Logout from "./components/forms/Logout";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
 
           <PrivateRoute path="/recipelisting" component={HomePage} />
 
-          <PrivateRoute exact path="/logout" />
+          <PrivateRoute path="/logout" component={Logout} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route exact path="/" component={Signup} />
