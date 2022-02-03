@@ -1,4 +1,15 @@
-import { EDITING, EDIT_RECIPE, CANCEL_EDIT, ADD_RECIPE, GET_RECIPES, DELETE_RECIPE } from "./../actions/index";
+
+import {
+  EDITING,
+  EDIT_RECIPE,
+  CANCEL_EDIT,
+  ADD_RECIPE,
+  GET_RECIPES,
+  SEARCHRECIPE,
+} from "./../actions/index";
+
+
+
 
 const initialState = {
   recipe: [
@@ -13,7 +24,7 @@ const initialState = {
     //   category: "dessert",
     // },
     // {
-    //   id: 75,
+    //   item_id: 75,
     //   title: "Homemade Croutons",
     //   source: "Shannon Dobbs",
     //   ingrediants:
@@ -21,6 +32,7 @@ const initialState = {
     //   instructions:
     //     " Preheat oven to 350 degrees Fahrenheit Toss ripped bread pieces into a bowl with olive oil and seasonings Place the bread pieces on a baking sheet Bake until crispy (about 15 minutes) ",
     //   category: "dinner",
+    //   user_id: "75",
     // },
   ],
   editing: false,
@@ -33,6 +45,7 @@ const initialState = {
     instructions: "",
     category: "",
   },
+ 
 };
 
 const reducer = (state = initialState, action) => {
@@ -62,11 +75,21 @@ const reducer = (state = initialState, action) => {
     case ADD_RECIPE:
       return {
         ...state,
-        recipe: [...state.recipe, action.payload ]
-      }
+        recipe: [...state.recipe, action.payload],
+      };
     case GET_RECIPES:
       return {
         ...state,
+
+        recipe: action.payload,
+      };
+    case SEARCHRECIPE:
+      return {
+        ...state,
+       
+        recipe: action.payload,
+      };
+
         recipe: action.payload
       }
     case DELETE_RECIPE:
@@ -75,6 +98,7 @@ const reducer = (state = initialState, action) => {
         recipe: state.recipe.filter(rec => rec.item_id !== action.payload )
       }
       
+
     default:
       return state;
   }

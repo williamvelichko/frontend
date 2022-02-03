@@ -5,17 +5,21 @@ import { getRecipes, setEditing } from "../actions";
 import EditRecipeForm from "../forms/EditRecipeForm";
 import SingleRecipe from "./SingleRecipe";
 import { useHistory } from "react-router-dom";
+import SearchIcon from "@mui/icons-material/Search";
 
-
+import { searchRecipe } from "../actions";
 
 function RecipeListings(props) {
-  const { recipe, editing, recipeId, dispatch } = props;
+
+  const { recipe, editing, dispatch } = props;
   const { push } = useHistory();
 
   useEffect(() => {
-    dispatch(getRecipes())
-  },[])
-    
+    dispatch(getRecipes());
+  }, []);
+
+
+
 
 
 
@@ -24,20 +28,55 @@ function RecipeListings(props) {
     push("/edit");
   };
 
+  const [filter, setFilter] = useState("");
+
+  const onChange = (e) => {
+    const searchString = e.target.value.toLowerCase();
+    if (e.target.value === "") {
+      dispatch(getRecipes());
+    }
+
+    setFilter(
+      recipe.filter((recipe) => {
+        return (
+          recipe.title.toLowerCase().includes(searchString) ||
+          recipe.category.toLowerCase().includes(searchString)
+        );
+      })
+    );
+  };
+
+  const handleSubmit = () => {
+    dispatch(searchRecipe(filter));
+  };
+
   return (
     <RecipeList>
       <Container>
         {editing && <EditRecipeForm />}
-        {recipe.length > 0 && recipe.map((recipe) => {
-          return (
-            <RecipeItem key={recipe.item_id}>
-              <SingleRecipe
-                recipe={recipe}
-                handleEditSelect={handleEditSelect}
-              />
-            </RecipeItem>
-          );
-        })}
+        <SearchBar>
+          <input
+            type="text"
+            id="search-bar"
+            placeholder="Search Recipe by title or categories"
+            name="search"
+            onChange={onChange}
+          />
+          <button onClick={handleSubmit}>
+            <SearchIcon />
+          </button>
+        </SearchBar>
+        {recipe.length > 0 &&
+          recipe.map((recipe) => {
+            return (
+              <RecipeItem key={recipe.item_id}>
+                <SingleRecipe
+                  recipe={recipe}
+                  handleEditSelect={handleEditSelect}
+                />
+              </RecipeItem>
+            );
+          })}
       </Container>
     </RecipeList>
   );
@@ -90,4 +129,26 @@ const RecipeItem = styled.div`
 
 const Container = styled.div`
   margin-top: 80px;
+`;
+const SearchBar = styled.div`
+  display: flex;
+  border: 3px solid black;
+  background-color: #fffae5;
+  padding: 5px;
+  border-radius: 5px;
+  width: 64%;
+  margin: auto;
+  margin-top: 30px;
+  input {
+    background-color: #fffae5;
+    border: none;
+    width: 100%;
+  }
+  button {
+    background-color: #fffae5;
+    border: none;
+  }
+  button:hover {
+    border: 1px solid black;
+  }
 `;

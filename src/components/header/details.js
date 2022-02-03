@@ -1,23 +1,42 @@
 // hello first name
 //links to add recipe
 //
-import React from "react";
+import React, { useState, usEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import SearchIcon from "@mui/icons-material/Search";
+import { connect } from "react-redux";
+import RecipeListings from "../HomePage/RecipeListings";
+import Search from "../Search/Search";
+import { getRecipes } from "../actions";
 
-function details() {
+// function Details(props) {
+//   const { recipe } = props;
+//   const [filter, setFilter] = useState("");
+//   const searchText = (event) => {
+//     setFilter(event.target.value);
+//   }}
+
+function Details(props) {
   const isloggedIn = localStorage.getItem("token");
+
+  const { recipe, dispatch } = props;
+
+  const handleSubmit = () => {};
   return (
     <HeaderStyle>
-      <h1>Family Secret Recipes</h1>
+      {/* <Search filter={filter} /> */}
+      <Link className="link" to="/recipelisting">
+        <h1>Family Secret Recipes</h1>
+      </Link>
       <NavBar>
-      <Link className="link" to="/">
+        <Link className="link" to="/">
           Home
         </Link>
         <Link className="link" to="/signup">
           Sign Up
         </Link>
+
         {isloggedIn && (
           <Link className="link" to="/logout">
             Logout
@@ -28,25 +47,17 @@ function details() {
             Add Your Own Recipe
           </Link>
         )}
-        {isloggedIn && (
-          <SearchBar>
-            <input
-              type="text"
-              id="search-bar"
-              placeholder="Search Recipe by title or categories"
-              name="search"
-            />
-            <button>
-              <SearchIcon />
-            </button>
-          </SearchBar>
-        )}
       </NavBar>
     </HeaderStyle>
   );
 }
+const mapState = (state) => {
+  return {
+    recipe: state.recipe,
+  };
+};
 
-export default details;
+export default connect(mapState)(Details);
 
 const HeaderStyle = styled.div`
   display: flex;
@@ -60,6 +71,11 @@ const HeaderStyle = styled.div`
   position: fixed;
   font-family: "Lobster";
   box-shadow: 10px 5px 10px grey;
+
+  .link {
+    text-decoration: none;
+    color: black;
+  }
 `;
 const NavBar = styled.div`
   display: flex;
