@@ -9,22 +9,29 @@ import { connect } from "react-redux";
 import RecipeListings from "../HomePage/RecipeListings";
 import Search from "../Search/Search";
 
-function Details(props) {
-  const { recipe } = props;
-  const [filter, setFilter] = useState("");
-  const searchText = (event) => {
-    setFilter(event.target.value);
-  };
+// function Details(props) {
+//   const { recipe } = props;
+//   const [filter, setFilter] = useState("");
+//   const searchText = (event) => {
+//     setFilter(event.target.value);
+//   }}
+
+function Details() {
+  const isloggedIn = localStorage.getItem("token");
 
   return (
     <HeaderStyle>
-      <Search filter={filter} />
+      {/* <Search filter={filter} /> */}
       <h1>Family Secret Recipes</h1>
       <NavBar>
+        <Link className="link" to="/">
+          Home
+        </Link>
         <Link className="link" to="/signup">
           Sign Up
         </Link>
-        <Link className="link" to="/logout">
+
+        {/* <Link className="link" to="/logout">
           Logout
         </Link>
         <Link className="link" to="/addrecipe">
@@ -42,7 +49,31 @@ function Details(props) {
           <button>
             <SearchIcon />
           </button>
-        </SearchBar>
+        </SearchBar> */}
+
+        {isloggedIn && (
+          <Link className="link" to="/logout">
+            Logout
+          </Link>
+        )}
+        {isloggedIn && (
+          <Link className="link" to="/addrecipe">
+            Add Your Own Recipe
+          </Link>
+        )}
+        {isloggedIn && (
+          <SearchBar>
+            <input
+              type="text"
+              id="search-bar"
+              placeholder="Search Recipe by title or categories"
+              name="search"
+            />
+            <button>
+              <SearchIcon />
+            </button>
+          </SearchBar>
+        )}
       </NavBar>
     </HeaderStyle>
   );

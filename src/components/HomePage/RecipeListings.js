@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { setEditing } from "../actions";
+import { getRecipes, setEditing } from "../actions";
 import EditRecipeForm from "../forms/EditRecipeForm";
 import SingleRecipe from "./SingleRecipe";
 import { useHistory } from "react-router-dom";
 
+
+
 function RecipeListings(props) {
-  const { recipe, editing, setEditing, recipeId } = props;
+  console.log(props)
+  const { recipe, editing, recipeId, dispatch } = props;
   const { push } = useHistory();
+
+  useEffect(() => {
+    dispatch(getRecipes())
+  },[])
+    
+      
+
 
   const handleEditSelect = (id) => {
     setEditing(id);
@@ -19,9 +29,9 @@ function RecipeListings(props) {
     <RecipeList>
       <Container>
         {editing && <EditRecipeForm />}
-        {recipe.map((recipe) => {
+        {recipe.length > 0 && recipe.map((recipe) => {
           return (
-            <RecipeItem key={recipe.id}>
+            <RecipeItem key={recipe.item_id}>
               <SingleRecipe
                 recipe={recipe}
                 handleEditSelect={handleEditSelect}
@@ -40,7 +50,7 @@ const mapStateToProps = (state) => {
     recipeId: state.recipeId,
   };
 };
-export default connect(mapStateToProps, { setEditing })(RecipeListings);
+export default connect(mapStateToProps)(RecipeListings);
 
 const RecipeList = styled.div`
   display: flex;

@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const { push } = useHistory();
 
   const [credentials, setCredentials] = useState({
-    email: "",
+    //  email: "",
+    username: "",
     password: "",
   });
 
@@ -23,7 +25,21 @@ const Login = () => {
       setErrors("ALL FIELDS REQUIRED!");
     } else {
       // localStorage.setItem('token')
-      push("/recipelisting");
+      //push("/recipelisting");
+      axios
+        .post(
+          " https://back-end-recipe.herokuapp.com/api/auth/login",
+          credentials
+        )
+        .then((resp) => {
+          //console.log(resp);
+          localStorage.setItem("token", resp.data.token);
+          push("/recipelisting");
+        })
+        .catch((err) => {
+          console.log(err);
+          setErrors("Wrong Username or Password");
+        });
     }
   };
 
@@ -34,12 +50,20 @@ const Login = () => {
           <form onSubmit={login}>
             <FormBorder>
               <h1>Log in</h1>
-              <label>Email : </label>
+              {/* <label>Email : </label>
               <input
                 type="text"
                 name="email"
                 placeholder="Enter your email"
                 value={credentials.email}
+                onChange={handleChange}
+              /> */}
+              <label>Username : </label>
+              <input
+                type="text"
+                name="username"
+                placeholder="Enter your username"
+                value={credentials.username}
                 onChange={handleChange}
               />
               <label>Password : </label>
