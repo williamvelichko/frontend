@@ -32,7 +32,6 @@ const Login = () => {
           credentials
         )
         .then((resp) => {
-          //console.log(resp);
           localStorage.setItem("token", resp.data.token);
           push("/recipelisting");
         })

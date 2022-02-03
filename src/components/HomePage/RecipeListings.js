@@ -16,7 +16,7 @@ function RecipeListings(props) {
     dispatch(getRecipes())
   },[])
     
-      
+
 
 
   const handleEditSelect = (id) => {

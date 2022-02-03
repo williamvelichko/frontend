@@ -1,4 +1,4 @@
-import { EDITING, EDIT_RECIPE, CANCEL_EDIT, ADD_RECIPE, GET_RECIPES } from "./../actions/index";
+import { EDITING, EDIT_RECIPE, CANCEL_EDIT, ADD_RECIPE, GET_RECIPES, DELETE_RECIPE } from "./../actions/index";
 
 const initialState = {
   recipe: [
@@ -68,6 +68,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         recipe: action.payload
+      }
+    case DELETE_RECIPE:
+      return {
+        ...state,
+        recipe: state.recipe.filter(rec => rec.item_id !== action.payload )
       }
       
     default:
