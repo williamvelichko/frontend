@@ -49,14 +49,15 @@ const reducer = (state = initialState, action) => {
         editing: false,
       };
     case EDIT_RECIPE:
-      const editedRecipe = {
-        ...action.payload,
-        id: Date.now(),
-      };
       return {
         ...state,
-        editing: false,
-        recipe: [...state.recipe, editedRecipe],
+        // editing: false,
+        recipe: state.recipe.map(rec => { 
+          if(rec.item_id === action.payload.item_id){
+            return action.payload
+          }
+          return rec
+        } )
       };
     case ADD_RECIPE:
       return {
@@ -68,6 +69,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         recipe: action.payload
       }
+      
     default:
       return state;
   }

@@ -9,7 +9,6 @@ import { useHistory } from "react-router-dom";
 
 
 function RecipeListings(props) {
-  console.log(props)
   const { recipe, editing, recipeId, dispatch } = props;
   const { push } = useHistory();
 

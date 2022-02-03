@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-
+import { editRecipes } from "../actions";
+import { connect } from "react-redux";
 
 function SingleRecipe(props) {
-  const { recipe, handleEditSelect } = props;
+  const { recipe, dispatch } = props;
 
   const [ editing, setEditing ] = useState(false)
  
@@ -14,7 +15,6 @@ function SingleRecipe(props) {
   });
 
   const handleChange = (e) => {
-    console.log(e)
     setState({ ...state, [e.target.name]: e.target.value });
   };
   
@@ -26,6 +26,11 @@ function SingleRecipe(props) {
     instructions:recipe.instructions,
     category: recipe.category
     })
+  }
+
+  const handleEdit = () => {
+    setEditing(!editing)
+    dispatch(editRecipes(recipe, state))
   }
 
   return (
@@ -44,9 +49,10 @@ function SingleRecipe(props) {
         <strong>Category:</strong> {editing ?<input onChange={handleChange} name='category' type='text' value={state.category}/>  : recipe.category}
       </h4>
       <button onClick={() => handleCancel()}>{editing ? 'Cancel' : "Edit"}</button>
-      {editing && <button>Save</button>}
+      {editing && <button onClick={handleEdit}>Save</button>}
     </div>
   );
 }
 
-export default SingleRecipe;
+
+export default connect ()(SingleRecipe);;
