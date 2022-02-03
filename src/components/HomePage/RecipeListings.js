@@ -26,6 +26,9 @@ function RecipeListings(props) {
 
   const onChange = (e) => {
     const searchString = e.target.value.toLowerCase();
+    if (e.target.value === "") {
+      dispatch(getRecipes());
+    }
 
     setFilter(
       recipe.filter((recipe) => {

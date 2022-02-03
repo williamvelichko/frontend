@@ -41,6 +41,7 @@ const initialState = {
     instructions: "",
     category: "",
   },
+  searchedRecipe: [],
 };
 
 const reducer = (state = initialState, action) => {
