@@ -64,20 +64,18 @@ function Details(props) {
             Add Your Own Recipe
           </Link>
         )}
-        {isloggedIn && (
-          <SearchBar>
-            <input
-              type="text"
-              id="search-bar"
-              placeholder="Search Recipe by title or categories"
-              name="search"
-              onChange={onChange}
-            />
-            <button onSubmit={handleSubmit}>
-              <SearchIcon />
-            </button>
-          </SearchBar>
-        )}
+        {/* <SearchBar>
+          <input
+            type="text"
+            id="search-bar"
+            placeholder="Search Recipe by title or categories"
+            name="search"
+            onChange={onChange}
+          />
+          <button>
+            <SearchIcon />
+          </button>
+        </SearchBar> */}
       </NavBar>
     </HeaderStyle>
   );
