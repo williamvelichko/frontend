@@ -1,13 +1,14 @@
 // hello first name
 //links to add recipe
 //
-import React, { useState } from "react";
+import React, { useState, usEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import SearchIcon from "@mui/icons-material/Search";
 import { connect } from "react-redux";
 import RecipeListings from "../HomePage/RecipeListings";
 import Search from "../Search/Search";
+import { getRecipes } from "../actions";
 
 // function Details(props) {
 //   const { recipe } = props;
@@ -16,13 +17,35 @@ import Search from "../Search/Search";
 //     setFilter(event.target.value);
 //   }}
 
-function Details() {
+function Details(props) {
   const isloggedIn = localStorage.getItem("token");
 
+  const { recipe, dispatch } = props;
+  const [filter, setFilter] = useState("");
+
+  const onChange = (e) => {
+    const searchString = e.target.value.toLowerCase();
+    const filteredRecipe = recipe.filter((recipe) => {
+      return (
+        recipe.item_name.toLowerCase().includes(searchString) ||
+        recipe.category.toLowerCase().includes(searchString)
+      );
+    });
+    console.log(filteredRecipe);
+    getRecipes(filteredRecipe);
+  };
+  // const display = () => {
+  //   useEffect(() => {
+  //     dispatch(getRecipes());
+  //   }, []);
+  // };
+  const handleSubmit = () => {};
   return (
     <HeaderStyle>
       {/* <Search filter={filter} /> */}
-      <h1>Family Secret Recipes</h1>
+      <Link className="link" to="/recipelisting">
+        <h1>Family Secret Recipes</h1>
+      </Link>
       <NavBar>
         <Link className="link" to="/">
           Home
@@ -30,26 +53,6 @@ function Details() {
         <Link className="link" to="/signup">
           Sign Up
         </Link>
-
-        {/* <Link className="link" to="/logout">
-          Logout
-        </Link>
-        <Link className="link" to="/addrecipe">
-          Add Your Own Recipe
-        </Link>
-        <SearchBar>
-          <input
-            type="text"
-            id="search-bar"
-            placeholder="Search Recipe by title or categories"
-            name="search"
-            value={filter}
-            onChange={searchText.bind(this)}
-          />
-          <button>
-            <SearchIcon />
-          </button>
-        </SearchBar> */}
 
         {isloggedIn && (
           <Link className="link" to="/logout">
@@ -68,8 +71,9 @@ function Details() {
               id="search-bar"
               placeholder="Search Recipe by title or categories"
               name="search"
+              onChange={onChange}
             />
-            <button>
+            <button onSubmit={handleSubmit}>
               <SearchIcon />
             </button>
           </SearchBar>
@@ -98,6 +102,11 @@ const HeaderStyle = styled.div`
   position: fixed;
   font-family: "Lobster";
   box-shadow: 10px 5px 10px grey;
+
+  .link {
+    text-decoration: none;
+    color: black;
+  }
 `;
 const NavBar = styled.div`
   display: flex;
