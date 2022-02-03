@@ -21,24 +21,7 @@ function Details(props) {
   const isloggedIn = localStorage.getItem("token");
 
   const { recipe, dispatch } = props;
-  const [filter, setFilter] = useState("");
 
-  const onChange = (e) => {
-    const searchString = e.target.value.toLowerCase();
-    const filteredRecipe = recipe.filter((recipe) => {
-      return (
-        recipe.item_name.toLowerCase().includes(searchString) ||
-        recipe.category.toLowerCase().includes(searchString)
-      );
-    });
-    console.log(filteredRecipe);
-    getRecipes(filteredRecipe);
-  };
-  // const display = () => {
-  //   useEffect(() => {
-  //     dispatch(getRecipes());
-  //   }, []);
-  // };
   const handleSubmit = () => {};
   return (
     <HeaderStyle>
@@ -64,18 +47,6 @@ function Details(props) {
             Add Your Own Recipe
           </Link>
         )}
-        {/* <SearchBar>
-          <input
-            type="text"
-            id="search-bar"
-            placeholder="Search Recipe by title or categories"
-            name="search"
-            onChange={onChange}
-          />
-          <button>
-            <SearchIcon />
-          </button>
-        </SearchBar> */}
       </NavBar>
     </HeaderStyle>
   );

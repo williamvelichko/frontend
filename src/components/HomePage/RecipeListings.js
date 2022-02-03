@@ -38,7 +38,6 @@ function RecipeListings(props) {
   };
 
   const handleSubmit = () => {
-    console.log("clicking");
     dispatch(searchRecipe(filter));
   };
 
