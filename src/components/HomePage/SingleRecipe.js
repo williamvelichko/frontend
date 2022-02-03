@@ -10,7 +10,7 @@ function SingleRecipe(props) {
         <strong>Source:</strong> {recipe.source}
       </p>
       <h4>
-        <strong>Ingrediants: {recipe.ingrediants}</strong>
+        <strong>ingredients: {recipe.ingredients}</strong>
       </h4>
       <h4>
         <strong>Instructions: {recipe.instructions}</strong>

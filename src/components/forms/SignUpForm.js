@@ -41,7 +41,7 @@ const Signup = () => {
           userInfo
         )
         .then((resp) => {
-          //console.log(resp);
+          console.log(resp);
           setUserInfo(resp.data);
           axios
             .post(
