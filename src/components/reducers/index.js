@@ -1,4 +1,3 @@
-
 import {
   EDITING,
   EDIT_RECIPE,
@@ -6,10 +5,8 @@ import {
   ADD_RECIPE,
   GET_RECIPES,
   SEARCHRECIPE,
+  DELETE_RECIPE,
 } from "./../actions/index";
-
-
-
 
 const initialState = {
   recipe: [
@@ -45,7 +42,6 @@ const initialState = {
     instructions: "",
     category: "",
   },
- 
 };
 
 const reducer = (state = initialState, action) => {
@@ -65,12 +61,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         // editing: false,
-        recipe: state.recipe.map(rec => { 
-          if(rec.item_id === action.payload.item_id){
-            return action.payload
+        recipe: state.recipe.map((rec) => {
+          if (rec.item_id === action.payload.item_id) {
+            return action.payload;
           }
-          return rec
-        } )
+          return rec;
+        }),
       };
     case ADD_RECIPE:
       return {
@@ -86,18 +82,15 @@ const reducer = (state = initialState, action) => {
     case SEARCHRECIPE:
       return {
         ...state,
-       
+
         recipe: action.payload,
       };
 
-        recipe: action.payload
-      }
     case DELETE_RECIPE:
       return {
         ...state,
-        recipe: state.recipe.filter(rec => rec.item_id !== action.payload )
-      }
-      
+        recipe: state.recipe.filter((rec) => rec.item_id !== action.payload),
+      };
 
     default:
       return state;
