@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { cancelEdit, saveEditRecipe } from "../actions";
 
 function EditRecipeForm({
@@ -12,9 +12,13 @@ function EditRecipeForm({
 }) {
   const [recipe, setRecipe] = useState(initialRecipe);
   const { push } = useHistory();
+  const { id } = useParams();
 
   useEffect(() => {
-    setRecipe(stateRecipe[0]);
+    stateRecipe.map((rec) => {
+      setRecipe(rec);
+      push(`/recipelisting/edit/${rec.id}`);
+    });
   }, []);
 
   const handleChange = (e) => {
@@ -41,8 +45,8 @@ function EditRecipeForm({
         <input value={recipe.title} name="title" onChange={handleChange} />
         <input value={recipe.source} name="source" onChange={handleChange} />
         <input
-          value={recipe.ingrediants}
-          name="ingrediants"
+          value={recipe.ingredients}
+          name="ingredients"
           onChange={handleChange}
         />
         <input

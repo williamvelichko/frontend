@@ -4,15 +4,16 @@ import styled from "styled-components";
 import { setEditing } from "../actions";
 import EditRecipeForm from "../forms/EditRecipeForm";
 import SingleRecipe from "./SingleRecipe";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 function RecipeListings(props) {
   const { recipe, editing, setEditing, recipeId } = props;
   const { push } = useHistory();
+  const { ID } = useParams();
 
   const handleEditSelect = (id) => {
     setEditing(id);
-    push("/edit");
+    push(`/recipelisting/edit/${ID}`);
   };
 
   return (

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function SingleRecipe(props) {
   const { recipe, handleEditSelect } = props;
-
+  console.log(recipe.id);
   return (
     <div>
       <h2>{recipe.title}</h2>

@@ -12,7 +12,7 @@ import Logout from "./components/forms/Logout";
 
 function App() {
   const { id } = useParams();
-  console.log(id);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -21,14 +21,11 @@ function App() {
       <div className="route_container">
         <Switch>
           <PrivateRoute
-            exact
-            path="/recipelisting/edit/id"
+            path="/recipelisting/edit/:id"
             component={EditRecipeForm}
           />
-
-          <PrivateRoute path="/addrecipe" component={AddRecipe} />
-
           <PrivateRoute path="/recipelisting" component={HomePage} />
+          <PrivateRoute path="/addrecipe" component={AddRecipe} />
 
           <PrivateRoute path="/logout" component={Logout} />
           <Route path="/signup" component={Signup} />
