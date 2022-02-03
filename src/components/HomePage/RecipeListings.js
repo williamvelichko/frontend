@@ -6,20 +6,14 @@ import EditRecipeForm from "../forms/EditRecipeForm";
 import SingleRecipe from "./SingleRecipe";
 import { useHistory, useParams } from "react-router-dom";
 
-
-
 function RecipeListings(props) {
-  console.log(props)
   const { recipe, editing, recipeId, dispatch } = props;
   const { push } = useHistory();
   const { ID } = useParams();
 
   useEffect(() => {
-    dispatch(getRecipes())
-  },[])
-    
-      
-
+    dispatch(getRecipes());
+  }, []);
 
   const handleEditSelect = (id) => {
     setEditing(id);
@@ -30,16 +24,17 @@ function RecipeListings(props) {
     <RecipeList>
       <Container>
         {editing && <EditRecipeForm />}
-        {recipe.length > 0 && recipe.map((recipe) => {
-          return (
-            <RecipeItem key={recipe.item_id}>
-              <SingleRecipe
-                recipe={recipe}
-                handleEditSelect={handleEditSelect}
-              />
-            </RecipeItem>
-          );
-        })}
+        {recipe.length > 0 &&
+          recipe.map((recipe) => {
+            return (
+              <RecipeItem key={recipe.item_id}>
+                <SingleRecipe
+                  recipe={recipe}
+                  handleEditSelect={handleEditSelect}
+                />
+              </RecipeItem>
+            );
+          })}
       </Container>
     </RecipeList>
   );

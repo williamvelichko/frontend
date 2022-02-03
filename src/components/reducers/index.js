@@ -1,4 +1,10 @@
-import { EDITING, EDIT_RECIPE, CANCEL_EDIT, ADD_RECIPE, GET_RECIPES } from "./../actions/index";
+import {
+  EDITING,
+  EDIT_RECIPE,
+  CANCEL_EDIT,
+  ADD_RECIPE,
+  GET_RECIPES,
+} from "./../actions/index";
 
 const initialState = {
   recipe: [
@@ -59,15 +65,19 @@ const reducer = (state = initialState, action) => {
         recipe: [...state.recipe, editedRecipe],
       };
     case ADD_RECIPE:
+      const newRecipe = {
+        ...action.payload,
+        id: Date.now(),
+      };
       return {
         ...state,
-        recipe: [...state.recipe, action.payload ]
-      }
+        smurfs: [...state.recipe, newRecipe],
+      };
     case GET_RECIPES:
       return {
         ...state,
-        recipe: action.payload
-      }
+        recipe: action.payload,
+      };
     default:
       return state;
   }

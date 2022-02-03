@@ -3,16 +3,14 @@ import { Link } from "react-router-dom";
 
 function SingleRecipe(props) {
   const { recipe, handleEditSelect } = props;
-  console.log(recipe.id);
+
   return (
     <div>
-      <h2>{recipe.title}</h2>
+      <h2>{recipe.item_name}</h2>
       <p>
         <strong>Source:</strong> {recipe.source}
       </p>
       <h4>
-        <strong>Ingrediants: {recipe.ingredients}</strong>
-
         <strong>ingredients: {recipe.ingredients}</strong>
       </h4>
       <h4>

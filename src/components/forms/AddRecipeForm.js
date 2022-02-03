@@ -1,16 +1,27 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import EditRecipeForm from "./EditRecipeForm";
 import { connect } from "react-redux";
+import { addRecipe } from "../actions";
+import axiosWithAuth from "../utils/axiosWithAuth";
+import axios from "axios";
+
 const AddRecipe = (props) => {
   const { push } = useHistory();
+  const { dispatch, addRecipe } = props;
   const [recipe, setRecipe] = useState({
-    title: "",
+    // title: "",
+    // source: "",
+    // ingredients: "",
+    // instructions: "",
+    // category: "",
+    item_name: "",
     source: "",
     ingredients: "",
     instructions: "",
     category: "",
+    user_id: "53",
   });
 
   const [error, setError] = useState("");
@@ -22,7 +33,7 @@ const AddRecipe = (props) => {
   const submit = (e) => {
     e.preventDefault();
     if (
-      recipe.title === "" ||
+      recipe.item_name === "" ||
       recipe.source === "" ||
       recipe.ingredients === "" ||
       recipe.instructions === "" ||
@@ -30,7 +41,12 @@ const AddRecipe = (props) => {
     ) {
       setError("ALL FIELDS REQUIRED!");
     } else {
-      push("/recipelisting");
+      axiosWithAuth()
+        .post("https://back-end-recipe.herokuapp.com/api/items", recipe)
+        .then((resp) => {
+          console.log(resp);
+        })
+        .catch((err) => console.log(err));
     }
   };
 
@@ -43,7 +59,7 @@ const AddRecipe = (props) => {
               <h1>Add Recipe</h1>
               <label>Title :</label>
               <input
-                name="title"
+                name="item_name"
                 type="text"
                 placeholder="Enter your recipe name"
                 value={recipe.title}
@@ -87,7 +103,7 @@ const AddRecipe = (props) => {
   );
 };
 
-export default connect(null, { EditRecipeForm })(AddRecipe);
+export default connect(null, { EditRecipeForm, addRecipe })(AddRecipe);
 
 const Container = styled.div`
   margin-top: 120px;
