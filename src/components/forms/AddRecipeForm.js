@@ -21,7 +21,7 @@ const AddRecipe = (props) => {
     ingredients: "",
     instructions: "",
     category: "",
-    user_id: "53",
+    user_id: "",
   });
 
   const [error, setError] = useState("");
@@ -91,6 +91,13 @@ const AddRecipe = (props) => {
                 name="category"
                 type="text"
                 value={recipe.category}
+                onChange={handleChange}
+              />
+              <label>User_id</label>
+              <input
+                name="user_id"
+                type="number"
+                value={recipe.user_id}
                 onChange={handleChange}
               />
               <button>Add Recipe!</button>
