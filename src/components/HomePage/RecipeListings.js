@@ -10,12 +10,18 @@ import SearchIcon from "@mui/icons-material/Search";
 import { searchRecipe } from "../actions";
 
 function RecipeListings(props) {
+
   const { recipe, editing, dispatch } = props;
   const { push } = useHistory();
 
   useEffect(() => {
     dispatch(getRecipes());
   }, []);
+
+
+
+
+
 
   const handleEditSelect = (id) => {
     setEditing(id);

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
-import EditRecipeForm from "./EditRecipeForm";
 import { connect } from "react-redux";
+import { addRecipe } from "../actions";
+
 const AddRecipe = (props) => {
+
   const { push } = useHistory();
   const [recipe, setRecipe] = useState({
     title: "",
@@ -30,6 +32,7 @@ const AddRecipe = (props) => {
     ) {
       setError("ALL FIELDS REQUIRED!");
     } else {
+      props.dispatch(addRecipe(recipe))
       push("/recipelisting");
     }
   };
@@ -87,7 +90,7 @@ const AddRecipe = (props) => {
   );
 };
 
-export default connect(null, { EditRecipeForm })(AddRecipe);
+export default connect ()(AddRecipe);
 
 const Container = styled.div`
   margin-top: 120px;
