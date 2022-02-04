@@ -144,19 +144,31 @@ const SignUpForm = styled.div`
   margin-top: 40px;
   font-family: oxygen;
   margin-bottom: 50px;
+  @media (max-width: 420px) {
+    margin-top: 100px;
+    width: 50%;
+  }
 `;
 
 const Fields = styled.div`
   display: flex;
   flex-direction: column;
+  @media (max-width: 420px) {
+    button {
+      text-align: center;
+    }
+  }
   button {
-    width: 40%;
+    width: 43%;
     background: transparent;
     border-radius: 3px;
     border: 2px solid palevioletred;
     color: palevioletred;
     margin: 5px 0em;
     padding: 5px;
+    @media (max-width: 420px) {
+      width: 70%;
+    }
   }
   button:hover {
     background-color: #fff2b2;
@@ -178,6 +190,9 @@ const Fields = styled.div`
     padding: 0.25em 1em;
 
     text-align: center;
+    @media (max-width: 420px) {
+      width: 50%;
+    }
   }
   .link:hover {
     background-color: #fff2b2;

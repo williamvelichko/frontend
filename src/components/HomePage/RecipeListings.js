@@ -10,18 +10,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import { searchRecipe } from "../actions";
 
 function RecipeListings(props) {
-
   const { recipe, editing, dispatch } = props;
   const { push } = useHistory();
 
   useEffect(() => {
     dispatch(getRecipes());
   }, []);
-
-
-
-
-
 
   const handleEditSelect = (id) => {
     setEditing(id);
@@ -125,6 +119,13 @@ const RecipeItem = styled.div`
   }
   font-family: oxygen;
   font-size: 1.5rem;
+  @media (max-width: 420px) {
+    font-size: 1.1rem;
+    button {
+      width: 30%;
+      font-size: 0.8rem;
+    }
+  }
 `;
 
 const Container = styled.div`

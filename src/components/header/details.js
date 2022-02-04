@@ -66,6 +66,9 @@ const HeaderStyle = styled.div`
   width: 100%;
   h1 {
     margin-left: 20px;
+    @media (max-width: 420px) {
+      font-size: 1.3rem;
+    }
   }
   background-color: #db7c26;
   position: fixed;
@@ -76,6 +79,8 @@ const HeaderStyle = styled.div`
     text-decoration: none;
     color: black;
   }
+  @media (max-width: 370px) {
+  }
 `;
 const NavBar = styled.div`
   display: flex;
@@ -85,6 +90,16 @@ const NavBar = styled.div`
   .link {
     text-decoration: none;
     color: black;
+  }
+  @media (max-width: 420px) {
+    font-size: 1rem;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 80%;
+    .link {
+      margin-right: 10px;
+    }
   }
 `;
 const SearchBar = styled.div`
