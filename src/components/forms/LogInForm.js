@@ -109,6 +109,10 @@ const FormBorder = styled.div`
     color: palevioletred;
     margin: 5px 0em;
     padding: 0.25em 1em;
+    @media (max-width: 420px) {
+      width: 70%;
+      font-size: 1rem;
+    }
   }
   button:hover {
     background-color: #fff2b2;
@@ -130,6 +134,9 @@ const FormBorder = styled.div`
     color: palevioletred;
     margin: 5px 0em;
     padding: 2px 1px 2px 2px;
+    @media (max-width: 420px) {
+      width: 64%;
+    }
   }
   .link:hover {
     background-color: #fff2b2;
@@ -145,4 +152,7 @@ const LoginForm = styled.div`
   background-color: #fffae5;
   margin-top: 10px;
   font-family: oxygen;
+  @media (max-width: 420px) {
+    width: 35%;
+  }
 `;

@@ -21,7 +21,6 @@ export const getRecipes = () => (dispatch) => {
   axiosWithAuth()
     .get("https://back-end-recipe.herokuapp.com/api/items")
     .then((resp) => {
-      console.log(resp.data);
       dispatch({ type: GET_RECIPES, payload: resp.data });
     });
 };

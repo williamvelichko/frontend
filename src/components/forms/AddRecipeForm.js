@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { addRecipe } from "../actions";
 
 const AddRecipe = (props) => {
-
   const { push } = useHistory();
   const [recipe, setRecipe] = useState({
     title: "",
@@ -32,7 +31,7 @@ const AddRecipe = (props) => {
     ) {
       setError("ALL FIELDS REQUIRED!");
     } else {
-      props.dispatch(addRecipe(recipe))
+      props.dispatch(addRecipe(recipe));
       push("/recipelisting");
     }
   };
@@ -90,7 +89,7 @@ const AddRecipe = (props) => {
   );
 };
 
-export default connect ()(AddRecipe);
+export default connect()(AddRecipe);
 
 const Container = styled.div`
   margin-top: 120px;
@@ -113,6 +112,11 @@ const AddRecipeForm = styled.div`
 const Fields = styled.div`
   display: flex;
   flex-direction: column;
+  @media (max-width: 420px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
   button {
     width: 40%;
     background: transparent;
@@ -121,6 +125,9 @@ const Fields = styled.div`
     color: palevioletred;
     margin: 5px 0em;
     padding: 0.25em 1em;
+    @media (max-width: 420px) {
+      width: 50%;
+    }
   }
   button:hover {
     background-color: #fff2b2;
