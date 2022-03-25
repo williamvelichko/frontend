@@ -113,10 +113,13 @@ const Signup = () => {
                 value={userInfo.repeat_password}
                 onChange={handleChange}
               /> */}
-              <h3> Already have an account</h3>
-              <Link className="link" to="/login">
-                Login
-              </Link>
+              <h3>
+                {" "}
+                Already have an account
+                <Link className="link" to="/login">
+                  Login
+                </Link>
+              </h3>
               <button id="submit">Sign Up!</button>
               <p>{error}</p>
             </Fields>
@@ -133,11 +136,12 @@ const SignUpWrapper = styled.div`
   flex-direction: column;
   //justify-content: center;
   width: 100%;
+  //background-color: black;
 `;
 const SignUpForm = styled.div`
   width: 30%;
   margin: auto;
-  border: 4px solid #780116;
+  //border: 4px solid #780116;
   border-radius: 5px;
   padding: 60px;
   background-color: #fffae5;
@@ -179,15 +183,13 @@ const Fields = styled.div`
     margin: 5px 0px;
   }
   .link {
-    text-decoration: none;
     margin-bottom: 10px;
-    width: 30%;
+    // width: 50%;
     background: transparent;
-    border-radius: 3px;
-    border: 2px solid palevioletred;
-    color: palevioletred;
-    margin: 5px 0em;
-    padding: 0.25em 1em;
+    border-radius: 10%;
+    color: black;
+
+    padding: 3px;
 
     text-align: center;
     @media (max-width: 420px) {
@@ -196,9 +198,10 @@ const Fields = styled.div`
   }
   .link:hover {
     background-color: #fff2b2;
-    border: 3px solid palevioletred;
+    border: 3px solid black;
   }
 `;
 const Container = styled.div`
   margin-top: 80px;
+  opacity: 0.8;
 `;

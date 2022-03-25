@@ -71,6 +71,7 @@ const HeaderStyle = styled.div`
     }
   }
   background-color: #db7c26;
+  opacity: 0.8;
   position: fixed;
   font-family: "Lobster";
   box-shadow: 10px 5px 10px grey;

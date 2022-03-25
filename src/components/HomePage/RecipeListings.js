@@ -29,7 +29,7 @@ function RecipeListings(props) {
     if (e.target.value === "") {
       dispatch(getRecipes());
     }
-
+    //higher order functions
     setFilter(
       recipe.filter((recipe) => {
         return (
