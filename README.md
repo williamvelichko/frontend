@@ -1,5 +1,5 @@
 
-HEROKU SITE: https://secret-recipe-red.vercel.app/
+Vercel SITE: https://secret-recipe-red.vercel.app/
 
 
 # Getting Started with Create React App
