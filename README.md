@@ -2,6 +2,27 @@
 Vercel SITE: https://secret-recipe-red.vercel.app/
 
 
+### Description:
+
+A team collaberated project where we created a web application where a user can signup and them create and save their secret recipe
+
+Created the user authentication using Redux, restfull API endpoints from a seperate server
+
+Built and Styled the forms for the signup and login
+
+Created the Ability to view the recipes by making an axios call to a API endpoint that retrieves the necessary data
+
+Ability to add a new recipe by once again using a enpoint from a backend server and then using Redux for the state managment throughout the application
+
+Constructed the ability to edit and delete a specfic selected recipe
+
+Built a functional search bar where you can filter threw and search for a specific recipe
+
+Styled the applications with CSS styled components and also made it responsive to phone sizes
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
